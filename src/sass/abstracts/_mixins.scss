@@ -1,0 +1,38 @@
+@mixin delayMoveBottom($seg) {
+  animation: .5s moveBottom ease-out both;
+  animation-delay: $seg + 2.2s;
+}
+
+// @mixin respond($breakpoint) {
+//   @if $breakpoint==bp-small {
+//     @media only screen and (max-width: $bp-small) {
+//       @content
+//     }
+
+//     ; //600px
+//   }
+
+//   // @if $breakpoint==tab-port {
+//   //   @media only screen and (max-width: 56.25em) {
+//   //     @content
+//   //   }
+
+//   //   ; //100px
+//   // }
+
+//   @if $breakpoint==bp-medium {
+//     @media only screen and (max-width: $bp-medium) {
+//       @content
+//     }
+
+//     ; //825px
+//   }
+
+//   @if $breakpoint==bp-large {
+//     @media only screen and (max-width: $bp-large) {
+//       @content
+//     }
+
+//     ; //1200px
+//   }
+// }

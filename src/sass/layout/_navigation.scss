@@ -1,0 +1,134 @@
+.navigation {
+  position: fixed;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  transition: all .7s;
+  padding-top: 1rem;
+
+  &--transparent {
+    background-color: transparent;
+  }
+
+  &--dark {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  &__container {
+    padding: 1.5rem 8rem;
+    width: 100%;
+    max-width: 160rem;
+    color: var(--color-gray-light-1);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /////////////////////// Navigation
+  &__nav {
+    display: flex;
+    position: relative;
+  }
+
+  &__checkbox {
+    display: none;
+  }
+
+  &__button {
+    display: none;
+  }
+
+
+  &__list {
+    display: flex;
+    align-items: center;
+  }
+
+  &__link {
+
+    &:link,
+    &:visited {
+      color: $color-gray-light-1;
+      // color: #19f6e8;
+      font-size: $default-font-size;
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all .4s;
+
+      &:first-child {
+        display: none;
+      }
+
+      &:not(:last-child) {
+        margin-right: 4rem;
+      }
+    }
+
+    &:hover,
+    &:active {
+      transform: translateY(-2px);
+    }
+
+    &--1 {
+      @include delayMoveBottom(0s);
+    }
+
+    &--2 {
+      @include delayMoveBottom(.2s);
+    }
+
+    &--3 {
+      @include delayMoveBottom(.4s);
+    }
+
+    &--4 {
+      @include delayMoveBottom(.6s);
+    }
+
+    &--5 {
+      @include delayMoveBottom(.8s);
+    }
+  }
+
+  &__home {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include delayMoveBottom(.2s);
+  }
+
+  &__home:hover &__svg {
+    &__polygon {
+      stroke: orangered;
+    }
+
+    &__text {
+      color: orangered;
+    }
+  }
+
+  &__svg {
+    height: 3rem;
+    width: 3rem;
+
+    &__polygon {
+      fill: transparent;
+      // stroke: #19f6e8;
+      stroke: $color-gray-light-1;
+      stroke-width: 7px;
+    }
+
+    &__text {
+      color: $color-gray-light-1;
+      // color: #19f6e8;
+      font-size: 1.7rem;
+      font-weight: 400;
+      font-family: "Lato";
+      margin-left: 1.5rem;
+    }
+  }
+}

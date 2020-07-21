@@ -1,0 +1,47 @@
+@keyframes draw {
+  0% {
+    stroke-dasharray: 0 500;
+    stroke-width: 8px;
+  }
+
+  100% {
+    stroke-dasharray: 500;
+    stroke-width: 8px;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+
+  from,
+  to {
+    border-color: transparent;
+    opacity: 1;
+  }
+
+  50% {
+    border-color: #19f6e8;
+  }
+}
+
+@keyframes moveBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

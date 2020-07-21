@@ -1,0 +1,58 @@
+.svg-wrapper {
+  background-color: rgb(2, 12, 27);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 3000;
+}
+
+.svg-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(.4);
+}
+
+.text {
+  color: #19f6e8;
+  font-size: 100px;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 2s ease-out;
+  font-family: "Lato";
+
+
+  overflow: hidden;
+  /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid #19f6e8;
+  /* The typwriter cursor */
+  white-space: nowrap;
+  /* Keeps the content on a single line */
+  letter-spacing: .15em;
+  /* Adjust as needed */
+
+  animation: typing .5s steps(40, end), blink-caret .75s step-end infinite;
+  animation-delay: .5s;
+}
+
+.polygon {
+  fill: transparent;
+  stroke: #19f6e8;
+  stroke-width: 8px;
+  stroke-dasharray: 0 500;
+
+  -webkit-animation: 1s draw linear forwards;
+  animation: 1.5s draw cubic-bezier(0.775, 0.245, 0.000, 0.425) forwards;
+}
+
+/* ANIMAITION */
+.svg-hidden {
+  transition: all .4s ease-in;
+  opacity: 0;
+  visibility: hidden;
+
+  .svg-content {
+    transition: transform .4s ease-in;
+    transform: translate(-50%, -50%) scale(.01);
+  }
+}
