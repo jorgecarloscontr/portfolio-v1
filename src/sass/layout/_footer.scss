@@ -1,0 +1,35 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-black;
+
+  &__social {
+    display: flex;
+    margin-top: 4rem;
+
+    &__link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: $color-gray-light-1;
+      font-size: 1.3rem;
+
+      &:not(:last-child) {
+        margin-right: 2rem;
+      }
+    }
+
+    &__svg {
+      fill: $color-gray-light-1;
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__text {
+    font-size: 1.6rem;
+    margin: 2.5rem 0 2rem 0;
+  }
+}

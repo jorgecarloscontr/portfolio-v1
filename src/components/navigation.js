@@ -67,7 +67,7 @@ const Navigation = () => {
               activeClassName="navigation__link--current"
               className="navigation__link navigation__link--3"
             >
-              Experience
+              Skills
             </Link>
             <Link
               to="/gallery"

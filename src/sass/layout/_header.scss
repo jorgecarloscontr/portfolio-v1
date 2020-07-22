@@ -37,18 +37,21 @@
       @include delayMoveBottom(1.1s);
     }
   }
+
   &__social {
     position: absolute;
-    bottom: 2rem;
+    bottom: 4rem;
     right: 3rem;
 
     display: flex;
+
     &__link {
       display: flex;
       flex-direction: column;
       align-items: center;
       font-size: 1.4rem;
       color: $color-gray-light-1;
+
       &:not(:last-child) {
         margin-right: 1.6rem;
       }

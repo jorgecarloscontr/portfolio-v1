@@ -1,0 +1,78 @@
+.portfolio {
+  width: 80%;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+.project {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  margin-bottom: 3rem;
+
+  &__image {
+    grid-column: 1 / span 7;
+  }
+
+  &__details {
+    grid-column: 8 / span 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+
+    p {
+      padding: 2rem;
+      font-size: 1.6rem;
+      background-image: linear-gradient(45deg, rgba(0, 0, 0, .6), rgba(0, 0, 0, .6));
+      border: 1px solid #00b7c7;
+      width: 120%;
+      z-index: 1;
+      text-align: right;
+      color: $color-gray-dark-2;
+    }
+  }
+
+  &__tecnologies {
+    list-style: none;
+
+    &__item {
+      display: inline-block;
+      font-size: 1.6rem;
+      padding: .5rem 1rem;
+      color: $color-gray-dark-2;
+
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  &__link-svg {
+    fill: $color-gray-dark-2;
+    width: 2.5rem;
+    height: 2.5rem;
+
+    &:not(:last-child) {
+      margin-right: 1.3rem;
+      margin-top: 2rem;
+    }
+  }
+
+  &:nth-child(odd) {
+
+    .project__image {
+      grid-column: 6 / span 7;
+
+    }
+
+    .project__details {
+      grid-column: 1 / span 5;
+      grid-row: 1 / 2;
+      align-items: flex-start;
+
+      p {
+        text-align: left;
+      }
+    }
+  }
+}

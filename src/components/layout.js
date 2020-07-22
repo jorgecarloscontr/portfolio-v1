@@ -1,13 +1,13 @@
 import React from "react"
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet"
 import PropTypes from "prop-types"
 
-import BackgroundIcon from "./backgroundIcon";
-import Navigation from './navigation';
-import Header from './header';
+import BackgroundIcon from "./backgroundIcon"
+import Navigation from "./navigation"
+import Header from "./header"
+import Footer from "./footer"
 
 const Layout = ({ children }) => {
-
   return (
     <>
       <Helmet>
@@ -20,6 +20,7 @@ const Layout = ({ children }) => {
       <Navigation />
       <Header />
       <main>{children}</main>
+      <Footer />
     </>
   )
 }

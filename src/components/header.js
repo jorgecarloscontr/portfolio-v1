@@ -56,7 +56,7 @@ const Header = ({ title, image, description }) => {
             Resume
           </div>
         </div>
-        <Link className="link-icon-down">
+        <Link className="link-icon-down" to="/">
           {" "}
           <IconDown className="icon-down" />
         </Link>
