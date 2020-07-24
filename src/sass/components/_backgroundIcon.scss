@@ -14,7 +14,7 @@
 }
 
 .text {
-  color: #19f6e8;
+  color: $color-gray-light-2;
   font-size: 100px;
   font-weight: 700;
   opacity: 0;
@@ -24,7 +24,7 @@
 
   overflow: hidden;
   /* Ensures the content is not revealed until the animation */
-  border-right: .15em solid #19f6e8;
+  border-right: .15em solid $color-gray-light-2;
   /* The typwriter cursor */
   white-space: nowrap;
   /* Keeps the content on a single line */
@@ -37,7 +37,7 @@
 
 .polygon {
   fill: transparent;
-  stroke: #19f6e8;
+  stroke: $color-gray-light-2;
   stroke-width: 8px;
   stroke-dasharray: 0 500;
 

@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 import Img from "gatsby-image"
 import IconLink from "../images/assets/link.svg"
 import IconGithub from "../images/assets/github.svg"
@@ -8,7 +7,7 @@ const Project = ({ data }) => {
   const { image, description, name, tecnologies, links } = data
 
   return (
-    <div className="project u-mb-big">
+    <div className="project">
       <div className="project__image">
         <Img fluid={image.sharp.fluid} />
       </div>
@@ -22,9 +21,17 @@ const Project = ({ data }) => {
             </li>
           ))}
         </ul>
-        <div>
-          {links.github && <IconGithub className="project__link-svg" />}
-          {links.url && <IconLink className="project__link-svg" />}
+        <div className="project__div-svg">
+          {links.github && (
+            <a href={`${links.github}`} target="_blank">
+              <IconGithub className="project__link-svg" />
+            </a>
+          )}
+          {links.url && (
+            <a href={`${links.url}`} target="_blank">
+              <IconLink className="project__link-svg" />
+            </a>
+          )}
         </div>
       </div>
     </div>

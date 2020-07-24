@@ -20,6 +20,15 @@
       &:not(:last-child) {
         margin-right: 2rem;
       }
+
+      &:hover {
+        cursor: pointer;
+        color: $color-gray-light-3;
+      }
+    }
+
+    &__link:hover &__svg {
+      fill: $color-gray-light-3;
     }
 
     &__svg {

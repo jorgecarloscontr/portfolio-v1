@@ -1,26 +1,27 @@
-import React from "react"
+import React, { useState } from "react"
 
 import "../sass/pages/_home.scss"
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 import About from "../components/about"
 import Skills from "../components/Skills"
 import Portfolio from "../components/portfolio"
+import Contact from "../components/contact"
+// contexts
+import Visibillity from "../context/componentVisibility/visibilityState"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <About />
-    <Skills />
-    <Portfolio />
-    <h2>Hi people</h2>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-  </Layout>
-)
+const IndexPage = () => {
+  return (
+    <Visibillity>
+      <Layout>
+        <SEO title="Home" />
+        <About />
+        <Skills />
+        <Portfolio />
+        <Contact />
+      </Layout>
+    </Visibillity>
+  )
+}
 
 export default IndexPage

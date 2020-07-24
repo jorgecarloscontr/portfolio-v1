@@ -12,9 +12,15 @@
     background-color: transparent;
   }
 
-  &--dark {
+  &--hidden {
     transform: translateY(-100%);
     opacity: 0;
+
+    @include respond(bp-medium) {
+      transform: none;
+      opacity: 1;
+      background-image: linear-gradient(45deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, .7));
+    }
   }
 
   &__container {
@@ -24,6 +30,14 @@
     color: var(--color-gray-light-1);
     display: flex;
     justify-content: space-between;
+
+    @include respond(bp-medium) {
+      padding: 1.5rem 4rem;
+    }
+
+    @include respond(bp-small) {
+      padding: 1.5rem 3rem;
+    }
   }
 
   /////////////////////// Navigation
@@ -36,14 +50,120 @@
     display: none;
   }
 
+  @include respond(bp-medium) {
+
+    &__checkbox:checked+&__button &__icon::before {
+      transform: rotate(-135deg);
+    }
+
+    &__checkbox:checked+&__button &__icon::after {
+      transform: rotate(135deg);
+    }
+
+    &__checkbox:checked+&__button &__icon {
+      background-color: transparent;
+    }
+
+    &__checkbox:checked~&__background {
+      width: 45vw;
+      opacity: 1;
+
+      @include respond(bp-small) {
+        width: 60vw;
+      }
+
+      // backdrop-filter: blur(1px);
+    }
+
+    &__checkbox:checked~&__list {
+      width: 45vw;
+      opacity: 1;
+      visibility: visible;
+
+      @include respond(bp-small) {
+        width: 60vw;
+      }
+    }
+  }
+
   &__button {
     display: none;
+
+    @include respond(bp-medium) {
+      transition: all .4s;
+      display: inline-block;
+      height: 3rem;
+      margin: auto;
+      z-index: 3000;
+    }
+  }
+
+  &__background {
+
+    @include respond(bp-medium) {
+      opacity: 0;
+      display: inline-block;
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-image: linear-gradient(rgba(0, 0, 0, .9), rgba(0, 0, 0, 0.6));
+      height: 100vh;
+      width: 0;
+      transition: width 0.3s cubic-bezier(0.86, 0, 0.07, 1), opacity .3s ease-out;
+    }
+  }
+
+  &__icon {
+    display: none;
+
+    @include respond(bp-medium) {
+
+      margin-top: 1.4rem;
+      position: relative;
+
+      &::before,
+      &::after {
+        content: "";
+        transition: all .2s;
+        position: absolute;
+      }
+
+      &::before {
+        transform: translateY(-.8rem);
+      }
+
+      &::after {
+        transform: translateY(.8rem);
+      }
+
+      &,
+      &::before,
+      &::after {
+        display: inline-block;
+        width: 3rem;
+        height: 2px;
+        background-color: $color-white;
+      }
+    }
   }
 
 
   &__list {
     display: flex;
     align-items: center;
+
+    @include respond(bp-medium) {
+      position: fixed;
+      visibility: hidden;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: 0;
+      opacity: 0;
+      flex-direction: column;
+      justify-content: center;
+      transition: all .3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
   }
 
   &__link {
@@ -70,6 +190,14 @@
     &:hover,
     &:active {
       transform: translateY(-2px);
+      color: $color-gray-light-3;
+
+
+      @include respond(bp-medium) {
+        background-position: 100%;
+        color: var(--color-primary);
+        transform: translateX(1rem);
+      }
     }
 
     &--1 {
@@ -91,8 +219,24 @@
     &--5 {
       @include delayMoveBottom(.8s);
     }
+
+    @include respond(bp-medium) {
+      font-size: 3rem;
+      font-weight: 400;
+      padding: 0 2rem;
+      margin: 2rem 0 !important;
+
+      background-image: linear-gradient(120deg, transparent 50%, white 50%);
+      background-size: 230%;
+      transition: all .4s;
+
+      &:first-child {
+        display: inline-block;
+      }
+    }
   }
 
+  //// SVG
   &__home {
     text-decoration: none;
     display: flex;
@@ -103,11 +247,11 @@
 
   &__home:hover &__svg {
     &__polygon {
-      stroke: orangered;
+      stroke: $color-gray-light-3;
     }
 
     &__text {
-      color: orangered;
+      color: $color-gray-light-3;
     }
   }
 
@@ -120,10 +264,12 @@
       // stroke: #19f6e8;
       stroke: $color-gray-light-1;
       stroke-width: 7px;
+      transition: color .3s ease-out;
     }
 
     &__text {
       color: $color-gray-light-1;
+      transition: color .3s ease-out;
       // color: #19f6e8;
       font-size: 1.7rem;
       font-weight: 400;

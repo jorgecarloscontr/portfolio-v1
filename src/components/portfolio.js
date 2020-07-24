@@ -1,13 +1,20 @@
-import React from "react"
+import React, { useContext } from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
+import VisibilitySensor from "react-visibility-sensor"
+
 import Proyect from "./project"
+import VisibilityContext from "../context/componentVisibility/visibilityContext"
 
 const Portfolio = () => {
+  const visibilityContext = useContext(VisibilityContext)
+  const heightviewport = parseInt((window.innerHeight || 0) / 2)
+  const { setCurrentComponent } = visibilityContext
   const { data } = useStaticQuery(graphql`
     query {
       data: allFile(filter: { relativePath: { regex: "/page/" } }) {
         edges {
           node {
+            name
             sharp: childImageSharp {
               fluid(maxWidth: 1200) {
                 ...GatsbyImageSharpFluid
@@ -19,37 +26,88 @@ const Portfolio = () => {
     }
   `)
 
+  const images = []
+  data.edges.forEach(el => {
+    images[`${el.node.name}`] = el.node
+  })
+
+  const onChange = isVisible => {
+    if (isVisible) setCurrentComponent("work")
+  }
+
   const proyect = [
     {
-      image: data.edges[0].node,
+      image: images.pageRestaurant,
       name: "Restaurant",
       description:
-        "Mauris tincidunt at ligula in venenatis. Integer sed dui ultricies, porttitor ipsum sed, ornare nunc. Curabitur semper tellus non libero volutpat condimentum. Etiam dolor nibh, venenatis ut mauris nec, pellentesque tincidunt massa. Cras sed libero eu lorem vehicula ornare vehicula quis dui. Donec bibendum feugiat venenatis. Ut dignissim ut urna et lobortis. Nullam consectetur sapien a turpis tempus ultrices.",
+        "Es un proyecto propio que desarrolle hace poco, cuyo propósito fue practicar lo que había aprendido en un curso sobre React.js. Es una pagina de un restaurante el cual cuenta con menús, promociones, una Galería de imágenes y otras características más. El contenido de la pagina puede ser modificada y actualizada por medio de una CMS en Node.js.",
       tecnologies: ["Gatsby/React.js", "Strapi", "GraphQL", "MySQL"],
       links: {
         url: "https://resataurant.netlify.app/",
-        github: "https://resataurant.netlify.app/",
+        github: "https://github.com/jorgecarloscontr/restaurant",
       },
     },
     {
-      image: data.edges[1].node,
+      image: images.pageStrgym,
       name: "STRGYM",
       description:
-        "Proin lectus lectus, malesuada ac vestibulum at, auctor quis mi. Etiam sit amet pretium dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur malesuada augue vitae ex facilisis, sit amet convallis magna fringilla.",
+        "Proyecto final para una materia en la universidad, Sistema capaz de realizar tareas administrativas de un gimnasio como el validar pagos, gestión de clientes y empleados, editar los planes de membresías, notificar cuando un cliente tenga que renovar su membresía, etc.",
       tecnologies: ["Laravel", "MySQL", "php/javascript", "Bootstrap"],
       links: {
-        url: "https://resataurant.netlify.app/",
-        github: "https://resataurant.netlify.app/",
+        url: "http://powerful-refuge-97928.herokuapp.com/login",
+        github: "https://github.com/jorgecarloscontr/strgym",
+      },
+    },
+    {
+      image: images.pageNatour,
+      name: "Natours",
+      description:
+        "Proyecto desarrollado en un curso en línea en Udemy, el cual es una pagina en donde se ofrecen tours. Integra autentificación de usuarios vía jwt, envió de correos para restablecer contraseñas, pagos con Stripe, subida de archivos y otras características más. Faltan funciones por implementar en el frontend pero el backend esta completo. Para iniciar session email: loulou@example.comm password: test1234",
+      tecnologies: ["Node.js", "MongoDB", "Express.js", "Stripe"],
+      links: {
+        url: "https://natours-dev-jorge.herokuapp.com/",
+        github: "https://github.com/jorgecarloscontr/natours",
+      },
+    },
+    {
+      image: images.pageMerntask,
+      name: "MernTask",
+      description:
+        "Página web desarrollada en curso en línea, el cual utiliza el stack MERN (MongoDB, Express.js, React.js y Node.js) para una agenda de proyectos. La página permite agregar, editar y eliminar proyectos y tareas. Además, integra autenticación de usuarios vía json web token.",
+      tecnologies: ["Node.js", "MongoDB", "Express.js", "React,js"],
+      links: {
+        url: "https://optimistic-saha-81eee8.netlify.app/",
+        github: "https://github.com/jorgecarloscontr/merntasks-server",
+      },
+    },
+    {
+      image: images.pageProductHunt,
+      name: "Clon Product Hunt",
+      description:
+        "Clon de la página Producto Hunt sin todas las funcionalidades que esta ofrece. La página permite la autentificación de usuario, postear comentar y dar like a un producto (solo para usuarios logreados). Este proyecto lo realice en un curso en línea el cual utiliza Next.js y Firebase como serverless",
+      tecnologies: ["Node.js", "MongoDB", "Express.js", "React,js"],
+      links: {
+        url: "https://product-hunt-c1cc1.web.app/",
+        github: "https://github.com/jorgecarloscontr/product-hunt",
       },
     },
   ]
 
   return (
-    <section className="portfolio">
-      <h2 className="u-mt-big u-mb-medium">Portfolio</h2>
-      <Proyect data={proyect[0]} />
-      <Proyect data={proyect[1]} />
-    </section>
+    <VisibilitySensor
+      onChange={onChange}
+      partialVisibility={true}
+      offset={{ top: heightviewport, bottom: heightviewport - 1 }}
+    >
+      <section className="portfolio" id="work">
+        <h2 className="u-mb-medium">Portfolio</h2>
+        <Proyect data={proyect[0]} />
+        <Proyect data={proyect[1]} />
+        <Proyect data={proyect[2]} />
+        <Proyect data={proyect[3]} />
+        <Proyect data={proyect[4]} />
+      </section>
+    </VisibilitySensor>
   )
 }
 

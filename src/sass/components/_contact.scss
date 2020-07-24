@@ -1,0 +1,34 @@
+.contact {
+  margin: 20rem 0 10rem 0;
+
+  &__content {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 130rem;
+    background-size: 100%;
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .2);
+    height: 50rem;
+
+    @include respond(bp-small) {
+      width: 90%;
+    }
+  }
+
+  &__form {
+    padding-left: 3rem;
+    padding-top: 3rem;
+    width: 45%;
+
+    @include respond(bp-medium) {
+      background-color: rgb(2, 12, 27);
+      height: 100%;
+      width: 100%;
+    }
+
+    @include respond(bp-small) {
+      padding: 0;
+    }
+
+  }
+}

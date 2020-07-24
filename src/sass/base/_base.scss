@@ -9,6 +9,11 @@
 
 html {
     font-size: 62.5%; // 1rem = 10px; 10px/16px = 62.5%
+    scroll-behavior: smooth;
+
+    @include respond(bp-large) {
+        font-size: 56.25%; //1rem = 12, 12/16
+    }
 }
 
 body {

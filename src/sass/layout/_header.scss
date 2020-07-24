@@ -21,6 +21,10 @@
     &--welcome,
     &--profession {
       width: 70%;
+
+      @include respond(bp-small) {
+        width: 80%;
+      }
     }
 
     &--welcome {
@@ -35,6 +39,10 @@
       font-size: 5rem;
       display: block;
       @include delayMoveBottom(1.1s);
+
+      @include respond(bp-small) {
+        font-size: 4.5rem;
+      }
     }
   }
 
@@ -45,16 +53,47 @@
 
     display: flex;
 
+    @include respond(bp-small) {
+      display: none;
+    }
+
+
     &__link {
       display: flex;
       flex-direction: column;
       align-items: center;
       font-size: 1.4rem;
       color: $color-gray-light-1;
+      transition: all .2s ease-out;
 
       &:not(:last-child) {
         margin-right: 1.6rem;
       }
+
+      &--1 {
+        @include delayMoveBottom(1.2s);
+      }
+
+      &--2 {
+        @include delayMoveBottom(1.3s);
+      }
+
+      &--3 {
+        @include delayMoveBottom(1.4s);
+      }
+
+      &--4 {
+        @include delayMoveBottom(1.5s);
+      }
+    }
+
+    &__link:hover {
+      cursor: pointer;
+      color: $color-gray-light-3;
+    }
+
+    &__link:hover &__svg {
+      fill: $color-gray-light-3;
     }
 
     &__svg {
@@ -73,5 +112,5 @@
 .icon-down {
   height: 3.5rem;
   width: 3.5rem;
-  fill: $color-gray-light-1;
+  fill: $color-gray-dark-2;
 }

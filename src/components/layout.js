@@ -4,6 +4,7 @@ import PropTypes from "prop-types"
 
 import BackgroundIcon from "./backgroundIcon"
 import Navigation from "./navigation"
+import NavigationRight from "./navigationRight"
 import Header from "./header"
 import Footer from "./footer"
 
@@ -18,6 +19,7 @@ const Layout = ({ children }) => {
       </Helmet>
       <BackgroundIcon />
       <Navigation />
+      <NavigationRight />
       <Header />
       <main>{children}</main>
       <Footer />

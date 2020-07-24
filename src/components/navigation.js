@@ -16,10 +16,18 @@ const Navigation = () => {
     }
   })
 
+  const onClickLink = () => {
+    if (document.getElementById("navi-toggle").checked) {
+      setTimeout(() => {
+        document.getElementById("navi-toggle").checked = false
+      }, 300)
+    }
+  }
+
   return (
     <div
       className={`navigation ${
-        scrollX === false ? "navigation--transparent" : "navigation--dark"
+        scrollX === false ? "navigation--transparent" : "navigation--hidden"
       } `}
     >
       <div className="navigation__container">
@@ -47,39 +55,54 @@ const Navigation = () => {
           <div className="navigation__svg__text">JC</div>
         </Link>
         <div className="navigation__nav">
+          <input
+            type="checkbox"
+            className="navigation__checkbox"
+            id="navi-toggle"
+          />
+          <label htmlFor="navi-toggle" className="navigation__button">
+            <span className="navigation__icon"></span>
+          </label>
+          <div className="navigation__background">&nbsp;</div>
+
           <div className="navigation__list">
             <Link
-              to="/menu"
+              to="/"
               activeClassName="navigation__link--current"
               className="navigation__link navigation__link--1"
+              onClick={onClickLink}
             >
               Home
             </Link>
             <Link
-              to="/menu"
+              to="#about"
               activeClassName="navigation__link--current"
               className="navigation__link navigation__link--2"
+              onClick={onClickLink}
             >
               About
             </Link>
             <Link
-              to="/menu"
+              to="#skills"
               activeClassName="navigation__link--current"
               className="navigation__link navigation__link--3"
+              onClick={onClickLink}
             >
               Skills
             </Link>
             <Link
-              to="/gallery"
+              to="#work"
               activeClassName="navigation__link--current"
               className="navigation__link navigation__link--4"
+              onClick={onClickLink}
             >
               Work
             </Link>
             <Link
-              to="/promos"
+              to="#contact"
               activeClassName="navigation__link--current"
               className="navigation__link navigation__link--5"
+              onClick={onClickLink}
             >
               Contact
             </Link>

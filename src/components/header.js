@@ -1,15 +1,25 @@
-import React from "react"
+import React, { useContext } from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
+import VisibilitySensor from "react-visibility-sensor"
 
 import IconEmail from "../images/assets/email.svg"
 import IconFacebook from "../images/assets/facebook.svg"
 import IconGithub from "../images/assets/github.svg"
 import IconDocument from "../images/assets/text-document.svg"
 import IconDown from "../images/assets/chevron-thin-down.svg"
+//context
+import VisibilityContext from "../context/componentVisibility/visibilityContext"
 
 const Header = ({ title, image, description }) => {
-  const { data } = useStaticQuery(graphql`
+  const visibilityContext = useContext(VisibilityContext)
+  const { setCurrentComponent } = visibilityContext
+  const heightviewport = parseInt((window.innerHeight || 0) / 2)
+
+  const onChange = isVisible => {
+    if (isVisible) setCurrentComponent("header")
+  }
+  const { data, file } = useStaticQuery(graphql`
     query {
       data: file(relativePath: { eq: "header.jpg" }) {
         sharp: childImageSharp {
@@ -17,6 +27,9 @@ const Header = ({ title, image, description }) => {
             ...GatsbyImageSharpFluid
           }
         }
+      }
+      file: file(relativePath: { eq: "Jorge Carlos Alvarado Contreras.pdf" }) {
+        publicURL
       }
     }
   `)
@@ -28,40 +41,59 @@ const Header = ({ title, image, description }) => {
   ]
 
   return (
-    <header className="u-mb-big header">
-      <BackgroundImage
-        tag="imageheader"
-        fluid={multiBackground}
-        fadeIn="soft"
-        className="header__background"
-      >
-        <div className="header__title--welcome">Hello, my name is</div>
-        <h1 className="header__title">Jorge Carlos Alvarado</h1>
-        <div className="header__title--profession">a Software Enginner</div>
-        <div className="header__social">
-          <div className="header__social__link">
-            <IconEmail className="header__social__svg" />
-            Email
+    <VisibilitySensor
+      onChange={onChange}
+      partialVisibility={true}
+      offset={{ top: heightviewport, bottom: heightviewport - 1 }}
+    >
+      <header className="u-mb-big header" id="header">
+        <BackgroundImage
+          tag="imageheader"
+          fluid={multiBackground}
+          fadeIn="soft"
+          className="header__background"
+        >
+          <div className="header__title--welcome">Hello, my name is</div>
+          <h1 className="header__title">Jorge Carlos Alvarado</h1>
+          <div className="header__title--profession">a Software Enginner</div>
+          <div className="header__social">
+            <a
+              href="mailto:jorge_carloscontr@hotmail.com"
+              className="header__social__link header__social__link--1"
+              target="_blank"
+            >
+              <IconEmail className="header__social__svg" />
+              Email
+            </a>
+            <a className="header__social__link header__social__link--2">
+              <IconFacebook className="header__social__svg" />
+              Facebook
+            </a>
+            <a
+              className="header__social__link header__social__link--3"
+              href="https://github.com/jorgecarloscontr"
+              target="_blank"
+            >
+              <IconGithub className="header__social__svg" />
+              Github
+            </a>
+            <a
+              target="_blank"
+              href={file.publicURL}
+              download
+              className="header__social__link header__social__link--4"
+            >
+              <IconDocument className="header__social__svg" />
+              Resume
+            </a>
           </div>
-          <div className="header__social__link">
-            <IconFacebook className="header__social__svg" />
-            Facebook
-          </div>
-          <div className="header__social__link">
-            <IconGithub className="header__social__svg" />
-            Github
-          </div>
-          <div className="header__social__link">
-            <IconDocument className="header__social__svg" />
-            Resume
-          </div>
-        </div>
-        <Link className="link-icon-down" to="/">
-          {" "}
-          <IconDown className="icon-down" />
-        </Link>
-      </BackgroundImage>
-    </header>
+          <Link className="link-icon-down" to="#about">
+            {" "}
+            <IconDown className="icon-down" />
+          </Link>
+        </BackgroundImage>
+      </header>
+    </VisibilitySensor>
   )
 }
 

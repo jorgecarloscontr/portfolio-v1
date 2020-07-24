@@ -1,10 +1,20 @@
 .about-me {
   width: 80%;
-  max-width: 120rem;
+  max-width: 130rem;
   margin: 0 auto;
+  padding-top: 8rem;
+
+  @include respond(bp-small) {
+    width: 90%;
+  }
 
   &__content {
     display: flex;
+
+    @include respond(bp-small) {
+      flex-direction: column;
+
+    }
 
   }
 
