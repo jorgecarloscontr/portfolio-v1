@@ -1,8 +1,14 @@
 .skills {
   margin: 24rem 0 10rem 0;
+  opacity: 0;
+  transition: opacity 1s ease-out;
+
+  @include respond(bp-medium) {
+    margin-top: 18rem;
+  }
 
   @include respond(bp-small) {
-    margin: 18rem 0;
+    margin: 18rem 0 6rem 0;
   }
 
   &__background {
@@ -122,6 +128,10 @@
       fill: $color-gray-dark-2;
     }
   }
+}
+
+.skills.animation {
+  opacity: 1;
 }
 
 /// languages

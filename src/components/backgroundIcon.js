@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
+
+import VisibilityContext from "../context/componentVisibility/visibilityContext"
 
 const BackgroundIcon = () => {
   const [visibleWrapper, setVisibleWrapper] = useState(true)
 
+  const visibilityContext = useContext(VisibilityContext)
+  const setStartAnimation =
+    visibilityContext && visibilityContext.setStartAnimation
+
   useEffect(() => {
     setTimeout(() => {
       setVisibleWrapper(false)
+      setStartAnimation(true)
     }, 2000)
   }, [])
 

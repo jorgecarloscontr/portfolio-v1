@@ -7,8 +7,10 @@ import VisibilityContext from "../context/componentVisibility/visibilityContext"
 
 const Portfolio = () => {
   const visibilityContext = useContext(VisibilityContext)
-  const heightviewport = parseInt((window.innerHeight || 0) / 2)
-  const { setCurrentComponent } = visibilityContext
+  const tmp = typeof window !== `undefined` ? window.innerHeight / 2 : 0
+  const heightviewport = parseInt(tmp)
+  const setCurrentComponent =
+    visibilityContext && visibilityContext.setCurrentComponent
   const { data } = useStaticQuery(graphql`
     query {
       data: allFile(filter: { relativePath: { regex: "/page/" } }) {

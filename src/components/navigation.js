@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { Link } from "gatsby"
+import VisibilityContext from "../context/componentVisibility/visibilityContext"
 
 const Navigation = () => {
   const [scrollX, setScrollX] = useState(false)
+
+  const visibilityContext = useContext(VisibilityContext)
+  const startAnimation = visibilityContext && visibilityContext.startAnimation
 
   const handleScroll = () => {
     if (window.scrollY > 55) setScrollX(true)
@@ -20,8 +24,32 @@ const Navigation = () => {
     if (document.getElementById("navi-toggle").checked) {
       setTimeout(() => {
         document.getElementById("navi-toggle").checked = false
+        document
+          .getElementsByTagName("body")[0]
+          .classList.remove("body--overflow-hidden")
       }, 300)
     }
+  }
+
+  const onClickCover = () => {
+    if (document.getElementById("navi-toggle").checked) {
+      document.getElementById("navi-toggle").checked = false
+      document
+        .getElementsByTagName("body")[0]
+        .classList.remove("body--overflow-hidden")
+    }
+  }
+
+  const onChangeCheckbox = event => {
+    const target = event.target
+    if (target.checked)
+      document
+        .getElementsByTagName("body")[0]
+        .classList.add("body--overflow-hidden")
+    else
+      document
+        .getElementsByTagName("body")[0]
+        .classList.remove("body--overflow-hidden")
   }
 
   return (
@@ -31,7 +59,12 @@ const Navigation = () => {
       } `}
     >
       <div className="navigation__container">
-        <Link to="/" className="navigation__home">
+        <Link
+          to="/"
+          className={`navigation__home ${
+            startAnimation ? "navigation__home--animation" : ""
+          }`}
+        >
           <svg
             height="200"
             width="200"
@@ -58,18 +91,24 @@ const Navigation = () => {
           <input
             type="checkbox"
             className="navigation__checkbox"
+            onChange={onChangeCheckbox}
             id="navi-toggle"
           />
           <label htmlFor="navi-toggle" className="navigation__button">
             <span className="navigation__icon"></span>
           </label>
           <div className="navigation__background">&nbsp;</div>
+          <div className="navigation__cover" onClick={onClickCover}>
+            &nbsp;
+          </div>
 
           <div className="navigation__list">
             <Link
               to="/"
               activeClassName="navigation__link--current"
-              className="navigation__link navigation__link--1"
+              className={`navigation__link navigation__link--1 ${
+                startAnimation ? "animation" : ""
+              }`}
               onClick={onClickLink}
             >
               Home
@@ -77,7 +116,9 @@ const Navigation = () => {
             <Link
               to="#about"
               activeClassName="navigation__link--current"
-              className="navigation__link navigation__link--2"
+              className={`navigation__link navigation__link--2 ${
+                startAnimation ? "animation" : ""
+              }`}
               onClick={onClickLink}
             >
               About
@@ -85,7 +126,9 @@ const Navigation = () => {
             <Link
               to="#skills"
               activeClassName="navigation__link--current"
-              className="navigation__link navigation__link--3"
+              className={`navigation__link navigation__link--3 ${
+                startAnimation ? "animation" : ""
+              }`}
               onClick={onClickLink}
             >
               Skills
@@ -93,7 +136,9 @@ const Navigation = () => {
             <Link
               to="#work"
               activeClassName="navigation__link--current"
-              className="navigation__link navigation__link--4"
+              className={`navigation__link navigation__link--4 ${
+                startAnimation ? "animation" : ""
+              }`}
               onClick={onClickLink}
             >
               Work
@@ -101,7 +146,9 @@ const Navigation = () => {
             <Link
               to="#contact"
               activeClassName="navigation__link--current"
-              className="navigation__link navigation__link--5"
+              className={`navigation__link navigation__link--5 ${
+                startAnimation ? "animation" : ""
+              }`}
               onClick={onClickLink}
             >
               Contact

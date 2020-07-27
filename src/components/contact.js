@@ -19,8 +19,12 @@ const Contact = () => {
   `)
 
   const visibilityContext = useContext(VisibilityContext)
-  const heightviewport = parseInt((window.innerHeight || 0) / 2)
-  const { currentComponent, setCurrentComponent } = visibilityContext
+  const tmp = typeof window !== `undefined` ? window.innerHeight / 2 : 0
+  const heightviewport = parseInt(tmp)
+  const setCurrentComponent =
+    visibilityContext && visibilityContext.setCurrentComponent
+  const currentComponent =
+    visibilityContext && visibilityContext.currentComponent
 
   const onChange = isVisible => {
     if (isVisible) setCurrentComponent("contact")
@@ -78,14 +82,14 @@ const Contact = () => {
                   name="email"
                 />
                 <label htmlFor="email" className="form__label">
-                  Email address
+                  Email
                 </label>
               </div>
 
               <div className="form__group">
                 <textarea
                   className="form__input form__textarea"
-                  placeholder="your comments"
+                  placeholder="Comments"
                   id="comment"
                   required
                   name="comment"

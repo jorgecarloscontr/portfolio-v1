@@ -5,7 +5,9 @@ import VisibilityContext from "../context/componentVisibility/visibilityContext"
 
 const NavigationRight = () => {
   const visibilityContext = useContext(VisibilityContext)
-  const { currentComponent } = visibilityContext
+
+  const currentComponent =
+    visibilityContext && visibilityContext.currentComponent
 
   return (
     <div

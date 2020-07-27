@@ -3,6 +3,8 @@
   max-width: 130rem;
   margin: 0 auto;
   padding-top: 8rem;
+  opacity: 0;
+  transition: opacity 1s ease-out;
 
   @include respond(bp-small) {
     width: 90%;
@@ -25,4 +27,8 @@
   &__image {
     flex: 1;
   }
+}
+
+.about-me.animation {
+  opacity: 1;
 }

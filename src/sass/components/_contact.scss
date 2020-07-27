@@ -1,6 +1,11 @@
 .contact {
   margin: 20rem 0 10rem 0;
 
+  @include respond(bp-medium) {
+    margin-top: 0rem;
+    padding-top: 7rem;
+  }
+
   &__content {
     width: 80%;
     margin: 0 auto;
@@ -24,6 +29,7 @@
       background-color: rgb(2, 12, 27);
       height: 100%;
       width: 100%;
+      padding: 0;
     }
 
     @include respond(bp-small) {

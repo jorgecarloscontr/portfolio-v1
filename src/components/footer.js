@@ -26,10 +26,10 @@ const Footer = () => {
           <IconEmail className="footer__social__svg" />
           Email
         </a>
-        <a className="footer__social__link">
+        {/* <a className="footer__social__link">
           <IconFacebook className="footer__social__svg" />
           Facebook
-        </a>
+        </a> */}
         <a
           href="https://github.com/jorgecarloscontr"
           target="_blank"

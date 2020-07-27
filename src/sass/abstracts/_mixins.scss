@@ -1,6 +1,6 @@
 @mixin delayMoveBottom($seg) {
   animation: .5s moveBottom ease-out both;
-  animation-delay: $seg + 2.2s;
+  animation-delay: $seg;
 }
 
 @mixin respond($breakpoint) {

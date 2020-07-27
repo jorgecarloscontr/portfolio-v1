@@ -4,7 +4,6 @@ import BackgroundImage from "gatsby-background-image"
 import VisibilitySensor from "react-visibility-sensor"
 
 import IconEmail from "../images/assets/email.svg"
-import IconFacebook from "../images/assets/facebook.svg"
 import IconGithub from "../images/assets/github.svg"
 import IconDocument from "../images/assets/text-document.svg"
 import IconDown from "../images/assets/chevron-thin-down.svg"
@@ -13,8 +12,13 @@ import VisibilityContext from "../context/componentVisibility/visibilityContext"
 
 const Header = ({ title, image, description }) => {
   const visibilityContext = useContext(VisibilityContext)
-  const { setCurrentComponent } = visibilityContext
-  const heightviewport = parseInt((window.innerHeight || 0) / 2)
+  const setCurrentComponent =
+    visibilityContext && visibilityContext.setCurrentComponent
+
+  const startAnimation = visibilityContext && visibilityContext.startAnimation
+
+  const tmp = typeof window !== `undefined` ? window.innerHeight / 2 : 0
+  const heightviewport = parseInt(tmp)
 
   const onChange = isVisible => {
     if (isVisible) setCurrentComponent("header")
@@ -53,24 +57,46 @@ const Header = ({ title, image, description }) => {
           fadeIn="soft"
           className="header__background"
         >
-          <div className="header__title--welcome">Hello, my name is</div>
-          <h1 className="header__title">Jorge Carlos Alvarado</h1>
-          <div className="header__title--profession">a Software Enginner</div>
+          <div
+            className={`header__title--welcome ${
+              startAnimation ? "animation" : ""
+            }`}
+          >
+            Hello, my name is
+          </div>
+          <h1 className={`header__title ${startAnimation ? "animation" : ""}`}>
+            Jorge Carlos Alvarado
+          </h1>
+          <div
+            className={`header__title--profession ${
+              startAnimation ? "animation" : ""
+            }`}
+          >
+            a Software Enginner
+          </div>
           <div className="header__social">
             <a
               href="mailto:jorge_carloscontr@hotmail.com"
-              className="header__social__link header__social__link--1"
+              className={`header__social__link header__social__link--1 ${
+                startAnimation ? "animation" : ""
+              }`}
               target="_blank"
             >
               <IconEmail className="header__social__svg" />
               Email
             </a>
-            <a className="header__social__link header__social__link--2">
+            {/* <a
+              className={`header__social__link header__social__link--2 ${
+                startAnimation ? "animation" : ""
+              }`}
+            >
               <IconFacebook className="header__social__svg" />
               Facebook
-            </a>
+            </a> */}
             <a
-              className="header__social__link header__social__link--3"
+              className={`header__social__link header__social__link--2 ${
+                startAnimation ? "animation" : ""
+              }`}
               href="https://github.com/jorgecarloscontr"
               target="_blank"
             >
@@ -81,7 +107,9 @@ const Header = ({ title, image, description }) => {
               target="_blank"
               href={file.publicURL}
               download
-              className="header__social__link header__social__link--4"
+              className={`header__social__link header__social__link--3 ${
+                startAnimation ? "animation" : ""
+              }`}
             >
               <IconDocument className="header__social__svg" />
               Resume
