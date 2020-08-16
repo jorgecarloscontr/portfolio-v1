@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 
 import "../sass/pages/_home.scss"
 import Layout from "../components/layout"

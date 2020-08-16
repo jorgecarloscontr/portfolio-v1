@@ -11,7 +11,7 @@ const About = () => {
     visibilityContext && visibilityContext.setCurrentComponent
 
   const tmp = typeof window !== `undefined` ? window.innerHeight / 2 : 0
-  const heightviewport = parseInt(tmp)
+  const heightviewport = parseInt(tmp, 10)
 
   const onChange = isVisible => {
     if (isVisible) setCurrentComponent("about")

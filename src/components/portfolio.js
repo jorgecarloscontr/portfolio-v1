@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import VisibilitySensor from "react-visibility-sensor"
 
 import Proyect from "./project"
@@ -8,7 +8,7 @@ import VisibilityContext from "../context/componentVisibility/visibilityContext"
 const Portfolio = () => {
   const visibilityContext = useContext(VisibilityContext)
   const tmp = typeof window !== `undefined` ? window.innerHeight / 2 : 0
-  const heightviewport = parseInt(tmp)
+  const heightviewport = parseInt(tmp, 10)
   const setCurrentComponent =
     visibilityContext && visibilityContext.setCurrentComponent
   const { data } = useStaticQuery(graphql`
@@ -42,7 +42,7 @@ const Portfolio = () => {
       image: images.pageRestaurant,
       name: "Restaurant",
       description:
-        "Es un proyecto propio que desarrolle hace poco, cuyo propósito fue practicar lo que había aprendido en un curso sobre React.js. Es una pagina de un restaurante el cual cuenta con menús, promociones, una Galería de imágenes y otras características más. El contenido de la pagina puede ser modificada y actualizada por medio de una CMS en Node.js.",
+        "Es un proyecto propio que desarrolle hace poco, cuyo propósito fue practicar lo que había aprendido en un curso sobre React.js. Es una pagina de un restaurante el cual cuenta con menús, promociones, una Galería de imágenes y otras características más. El contenido del sitio puede ser modificado a traves de un cms.",
       tecnologies: ["Gatsby/React.js", "Strapi", "GraphQL", "MySQL"],
       links: {
         url: "https://resataurant.netlify.app/",
@@ -64,7 +64,7 @@ const Portfolio = () => {
       image: images.pageNatour,
       name: "Natours",
       description:
-        "Proyecto desarrollado en un curso en línea en Udemy, el cual es una pagina en donde se ofrecen tours. Integra autentificación de usuarios vía jwt, envió de correos para restablecer contraseñas, pagos con Stripe, subida de archivos y otras características más. Faltan funciones por implementar en el frontend pero el backend esta completo. Para iniciar session email: loulou@example.comm password: test1234",
+        "Proyecto desarrollado en un curso en línea en Udemy, el cual es una pagina en donde se ofrecen tours. Integra autentificación de usuarios vía jwt, envió de correos para restablecer contraseñas, pagos con Stripe, subida de archivos y otras características más. Faltan funciones por implementar en el frontend pero el backend esta completo.",
       tecnologies: ["Node.js", "MongoDB", "Express.js", "Stripe"],
       links: {
         url: "https://natours-dev-jorge.herokuapp.com/",
@@ -87,7 +87,7 @@ const Portfolio = () => {
       name: "Clon Product Hunt",
       description:
         "Clon de la página Producto Hunt sin todas las funcionalidades que esta ofrece. La página permite la autentificación de usuario, postear comentar y dar like a un producto (solo para usuarios logreados). Este proyecto lo realice en un curso en línea el cual utiliza Next.js y Firebase como serverless",
-      tecnologies: ["Node.js", "MongoDB", "Express.js", "React,js"],
+      tecnologies: ["Next.js", "Firebase"],
       links: {
         url: "https://product-hunt-c1cc1.web.app/",
         github: "https://github.com/jorgecarloscontr/product-hunt",

@@ -10,7 +10,7 @@ import IconDown from "../images/assets/chevron-thin-down.svg"
 //context
 import VisibilityContext from "../context/componentVisibility/visibilityContext"
 
-const Header = ({ title, image, description }) => {
+const Header = () => {
   const visibilityContext = useContext(VisibilityContext)
   const setCurrentComponent =
     visibilityContext && visibilityContext.setCurrentComponent
@@ -18,7 +18,7 @@ const Header = ({ title, image, description }) => {
   const startAnimation = visibilityContext && visibilityContext.startAnimation
 
   const tmp = typeof window !== `undefined` ? window.innerHeight / 2 : 0
-  const heightviewport = parseInt(tmp)
+  const heightviewport = parseInt(tmp, 10)
 
   const onChange = isVisible => {
     if (isVisible) setCurrentComponent("header")
